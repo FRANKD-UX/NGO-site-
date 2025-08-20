@@ -1,4 +1,25 @@
-:root {
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    /* use valid Tailwind utilities instead of undefined custom ones */
+    @apply border border-gray-200;
+    /* example ring replacement if you want a faint outline on focus:
+       @apply ring-1 ring-green-600/20;
+    */
+  }
+}
+
+
+
+:root{
+  --primary: #166534;
+  --background: #ffffff;
+  --muted: #666666;
+  --container-width: 1200px;
+
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
@@ -28,6 +49,11 @@ body {
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
+  font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  background:var(--background);
+  color:#111827;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
 }
 
 h1 {
@@ -52,6 +78,54 @@ button:hover {
 button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
+}
+
+/* container utility */
+.container{
+  max-width:var(--container-width);
+  margin-left:auto;
+  margin-right:auto;
+  padding-left:1rem;
+  padding-right:1rem;
+}
+
+/* simple helpers used by components */
+.hidden{display:none}
+.flex{display:flex}
+.items-center{align-items:center}
+.justify-center{justify-content:center}
+.p-4{padding:1rem}
+.py-4{padding-top:1rem;padding-bottom:1rem}
+.mb-6{margin-bottom:1.5rem}
+
+/* header */
+header.site-header{
+  background:var(--primary);
+  color:#fff;
+  box-shadow:0 2px 8px rgba(0,0,0,0.08);
+  position:sticky;
+  top:0;
+  z-index:50;
+}
+
+/* hero */
+.section-hero{
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  background: linear-gradient(135deg,#ffffff 0%, #f0fdf4 100%);
+}
+
+/* basic responsive grid */
+.grid{display:grid;grid-gap:1.5rem}
+.grid-2{grid-template-columns:repeat(2,1fr)}
+
+/* footer */
+footer.site-footer{
+  padding:2rem 0;
+  text-align:center;
+  color:var(--muted);
+  border-top:1px solid #e5e7eb;
 }
 
 @media (prefers-color-scheme: light) {
