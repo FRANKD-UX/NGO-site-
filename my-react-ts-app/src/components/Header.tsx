@@ -1,7 +1,9 @@
 import React from 'react';
 
-export const Header: React.FC = () => {
-    const scrollToSection = (sectionId: string) => {
+interface HeaderProps { }
+
+export const Header: React.FC<HeaderProps> = () => {
+    const scrollToSection = (sectionId: string): void => {
         const element = document.getElementById(sectionId);
         if (element) {
             element.scrollIntoView({ behavior: 'smooth' });
@@ -10,7 +12,7 @@ export const Header: React.FC = () => {
 
     return (
         <header className="bg-primary text-primary-foreground shadow-lg sticky top-0 z-50">
-            <div className="container mx-auto px-4 py-4">
+            <div className="container py-4">
                 <div className="flex items-center justify-between">
                     <div className="flex items-center space-x-2">
                         <div className="w-10 h-10 bg-accent rounded-full flex items-center justify-center">
@@ -25,31 +27,69 @@ export const Header: React.FC = () => {
                     <nav className="hidden md:flex space-x-6">
                         <button
                             onClick={() => scrollToSection('home')}
-                            className="hover:text-accent transition-colors"
+                            className="opacity-90 transition-opacity cursor-pointer"
+                            style={{
+                                background: 'none',
+                                border: 'none',
+                                color: 'inherit',
+                                padding: '0.5rem',
+                                borderRadius: '0.25rem'
+                            }}
+                            onMouseEnter={(e) => e.currentTarget.style.color = 'var(--accent)'}
+                            onMouseLeave={(e) => e.currentTarget.style.color = 'inherit'}
                         >
                             Home
                         </button>
                         <button
                             onClick={() => scrollToSection('about')}
-                            className="hover:text-accent transition-colors"
+                            className="opacity-90 transition-opacity cursor-pointer"
+                            style={{
+                                background: 'none',
+                                border: 'none',
+                                color: 'inherit',
+                                padding: '0.5rem',
+                                borderRadius: '0.25rem'
+                            }}
+                            onMouseEnter={(e) => e.currentTarget.style.color = 'var(--accent)'}
+                            onMouseLeave={(e) => e.currentTarget.style.color = 'inherit'}
                         >
                             About
                         </button>
                         <button
                             onClick={() => scrollToSection('services')}
-                            className="hover:text-accent transition-colors"
+                            className="opacity-90 transition-opacity cursor-pointer"
+                            style={{
+                                background: 'none',
+                                border: 'none',
+                                color: 'inherit',
+                                padding: '0.5rem',
+                                borderRadius: '0.25rem'
+                            }}
+                            onMouseEnter={(e) => e.currentTarget.style.color = 'var(--accent)'}
+                            onMouseLeave={(e) => e.currentTarget.style.color = 'inherit'}
                         >
                             Services
                         </button>
                         <button
                             onClick={() => scrollToSection('contact')}
-                            className="hover:text-accent transition-colors"
+                            className="opacity-90 transition-opacity cursor-pointer"
+                            style={{
+                                background: 'none',
+                                border: 'none',
+                                color: 'inherit',
+                                padding: '0.5rem',
+                                borderRadius: '0.25rem'
+                            }}
+                            onMouseEnter={(e) => e.currentTarget.style.color = 'var(--accent)'}
+                            onMouseLeave={(e) => e.currentTarget.style.color = 'inherit'}
                         >
                             Contact
                         </button>
                     </nav>
 
-                    <button className="md:hidden text-2xl">☰</button>
+                    <button className="md:hidden text-2xl bg-transparent border-none text-primary-foreground">
+                        ☰
+                    </button>
                 </div>
             </div>
         </header>

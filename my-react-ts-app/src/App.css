@@ -1,3 +1,22 @@
+/* Importing the main CSS file for the project */
+@import './index.css';
+
+/* Reset body to take full space */
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #ffffff; /* match your hero background */
+  font-family: Arial, sans-serif;
+}
+
+/* Ensure your root container spans full width */
+#root, .app {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
 :root {
   --font-size: 14px;
   

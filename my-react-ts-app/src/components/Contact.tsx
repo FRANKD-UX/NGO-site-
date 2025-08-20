@@ -1,7 +1,17 @@
 import React, { useState } from 'react';
 
-export const Contact: React.FC = () => {
-    const [formData, setFormData] = useState({
+interface FormData {
+    name: string;
+    email: string;
+    phone: string;
+    subject: string;
+    message: string;
+}
+
+interface ContactProps { }
+
+export const Contact: React.FC<ContactProps> = () => {
+    const [formData, setFormData] = useState<FormData>({
         name: '',
         email: '',
         phone: '',
@@ -9,7 +19,7 @@ export const Contact: React.FC = () => {
         message: ''
     });
 
-    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>): void => {
         const { name, value } = e.target;
         setFormData(prev => ({
             ...prev,
@@ -17,7 +27,7 @@ export const Contact: React.FC = () => {
         }));
     };
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleSubmit = (e: React.FormEvent): void => {
         e.preventDefault();
         // Handle form submission here
         console.log('Form submitted:', formData);
@@ -32,8 +42,8 @@ export const Contact: React.FC = () => {
     };
 
     return (
-        <section id="contact" className="py-20 bg-secondary/10">
-            <div className="container mx-auto px-4">
+        <section id="contact" className="py-20 secondary-bg">
+            <div className="container">
                 <div className="text-center mb-16">
                     <h2 className="text-4xl font-bold text-primary mb-4">Get In Touch</h2>
                     <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
@@ -98,20 +108,29 @@ export const Contact: React.FC = () => {
                         </div>
 
                         <div>
-                            <h3 className="text-2xl font-semibold text-primary mb-4">Follow Us</h3>
-                            <div className="flex space-x-4">
-                                <button className="w-12 h-12 bg-primary rounded-lg text-primary-foreground hover:bg-primary/90 transition-colors">
-                                    f
-                                </button>
-                                <button className="w-12 h-12 bg-primary rounded-lg text-primary-foreground hover:bg-primary/90 transition-colors">
-                                    t
-                                </button>
-                                <button className="w-12 h-12 bg-primary rounded-lg text-primary-foreground hover:bg-primary/90 transition-colors">
-                                    in
-                                </button>
-                                <button className="w-12 h-12 bg-primary rounded-lg text-primary-foreground hover:bg-primary/90 transition-colors">
-                                    ig
-                                </button>
+                            <h3 className="follow-us-title">Follow Us</h3>
+                            <div className="social-icons">
+                                <a href="https://facebook.com/yourpage" target="_blank" rel="noopener noreferrer" aria-label="Facebook" className="icon large">
+                                    {/* Facebook SVG (same as header) */}
+                                    <svg viewBox="0 0 24 24" fill="currentColor" width="28" height="28" aria-hidden="true">
+                                        <path d="M22 12.07C22 6.49 17.52 2 12 2S2 6.49 2 12.07C2 17.1 5.66 21.25 10.44 22v-7.02H7.9v-2.9h2.54V9.41c0-2.5 1.49-3.88 3.77-3.88 1.09 0 2.23.2 2.23.2v2.45h-1.25c-1.24 0-1.63.77-1.63 1.56v1.87h2.78l-.44 2.9h-2.34V22C18.34 21.25 22 17.1 22 12.07z" />
+                                    </svg>
+                                </a>
+                                <a href="https://instagram.com/yourprofile" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="icon large">
+                                    <svg viewBox="0 0 24 24" fill="currentColor" width="28" height="28" aria-hidden="true">
+                                        <path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm5 6.2A3.8 3.8 0 1 0 15.8 12 3.8 3.8 0 0 0 12 8.2zm6.4-2.6a1.1 1.1 0 1 0 1.1 1.1 1.1 1.1 0 0 0-1.1-1.1z" />
+                                    </svg>
+                                </a>
+                                <a href="https://linkedin.com/in/yourprofile" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="icon large">
+                                    <svg viewBox="0 0 24 24" fill="currentColor" width="28" height="28" aria-hidden="true">
+                                        <path d="M4.98 3.5A2.5 2.5 0 1 0 4.98 8.5 2.5 2.5 0 0 0 4.98 3.5zM3 9h4v12H3zM9 9h3.8v1.7h.1c.5-.9 1.7-1.8 3.6-1.8 3.9 0 4.6 2.6 4.6 6v7.1H20V15.1c0-2-0.04-4.6-2.8-4.6-2.8 0-3.2 2.2-3.2 4.5V21H9z" />
+                                    </svg>
+                                </a>
+                                <a href="https://twitter.com/yourprofile" target="_blank" rel="noopener noreferrer" aria-label="Twitter" className="icon large">
+                                    <svg viewBox="0 0 24 24" fill="currentColor" width="28" height="28" aria-hidden="true">
+                                        <path d="M22 5.92c-.6.27-1.24.45-1.92.53a3.36 3.36 0 0 0 1.47-1.86 6.7 6.7 0 0 1-2.12.81 3.35 3.35 0 0 0-5.7 3.05A9.5 9.5 0 0 1 3.1 4.97a3.35 3.35 0 0 0 1.04 4.47c-.5 0-.98-.15-1.4-.38v.04c0 1.6 1.12 2.94 2.6 3.24-.46.12-.95.17-1.45.06.41 1.28 1.6 2.22 3.01 2.25A6.72 6.72 0 0 1 2 19.54 9.48 9.48 0 0 0 7.29 21c5.55 0 8.59-4.6 8.59-8.59v-.39c.6-.44 1.12-.98 1.52-1.62a9.4 9.4 0 0 1-2.92.8z" />
+                                    </svg>
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -122,7 +141,7 @@ export const Contact: React.FC = () => {
                         <form onSubmit={handleSubmit} className="space-y-6">
                             <div className="grid md:grid-cols-2 gap-4">
                                 <div>
-                                    <label htmlFor="name" className="block text-sm font-medium text-foreground mb-2">
+                                    <label htmlFor="name" className="block text-sm font-semibold text-foreground mb-2">
                                         Full Name *
                                     </label>
                                     <input
@@ -132,13 +151,13 @@ export const Contact: React.FC = () => {
                                         value={formData.name}
                                         onChange={handleInputChange}
                                         required
-                                        className="w-full px-4 py-3 border border-border rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent bg-input-background"
+                                        className="form-input"
                                         placeholder="Your full name"
                                     />
                                 </div>
 
                                 <div>
-                                    <label htmlFor="email" className="block text-sm font-medium text-foreground mb-2">
+                                    <label htmlFor="email" className="block text-sm font-semibold text-foreground mb-2">
                                         Email Address *
                                     </label>
                                     <input
@@ -148,7 +167,7 @@ export const Contact: React.FC = () => {
                                         value={formData.email}
                                         onChange={handleInputChange}
                                         required
-                                        className="w-full px-4 py-3 border border-border rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent bg-input-background"
+                                        className="form-input"
                                         placeholder="your@email.com"
                                     />
                                 </div>
@@ -156,7 +175,7 @@ export const Contact: React.FC = () => {
 
                             <div className="grid md:grid-cols-2 gap-4">
                                 <div>
-                                    <label htmlFor="phone" className="block text-sm font-medium text-foreground mb-2">
+                                    <label htmlFor="phone" className="block text-sm font-semibold text-foreground mb-2">
                                         Phone Number
                                     </label>
                                     <input
@@ -165,13 +184,13 @@ export const Contact: React.FC = () => {
                                         name="phone"
                                         value={formData.phone}
                                         onChange={handleInputChange}
-                                        className="w-full px-4 py-3 border border-border rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent bg-input-background"
+                                        className="form-input"
                                         placeholder="(555) 123-4567"
                                     />
                                 </div>
 
                                 <div>
-                                    <label htmlFor="subject" className="block text-sm font-medium text-foreground mb-2">
+                                    <label htmlFor="subject" className="block text-sm font-semibold text-foreground mb-2">
                                         Subject *
                                     </label>
                                     <select
@@ -180,7 +199,7 @@ export const Contact: React.FC = () => {
                                         value={formData.subject}
                                         onChange={handleInputChange}
                                         required
-                                        className="w-full px-4 py-3 border border-border rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent bg-input-background"
+                                        className="form-select"
                                     >
                                         <option value="">Select a subject</option>
                                         <option value="general">General Inquiry</option>
@@ -193,7 +212,7 @@ export const Contact: React.FC = () => {
                             </div>
 
                             <div>
-                                <label htmlFor="message" className="block text-sm font-medium text-foreground mb-2">
+                                <label htmlFor="message" className="block text-sm font-semibold text-foreground mb-2">
                                     Message *
                                 </label>
                                 <textarea
@@ -203,14 +222,14 @@ export const Contact: React.FC = () => {
                                     onChange={handleInputChange}
                                     required
                                     rows={5}
-                                    className="w-full px-4 py-3 border border-border rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent bg-input-background resize-vertical"
+                                    className="form-textarea"
                                     placeholder="Tell us how we can help you..."
                                 ></textarea>
                             </div>
 
                             <button
                                 type="submit"
-                                className="w-full bg-primary text-primary-foreground py-3 rounded-lg hover:bg-primary/90 transition-colors"
+                                className="w-full btn btn-primary"
                             >
                                 Send Message
                             </button>

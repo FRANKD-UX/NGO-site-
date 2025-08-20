@@ -19,6 +19,8 @@
   --background: #ffffff;
   --muted: #666666;
   --container-width: 1200px;
+  --section-bg: #f0fdf4;   /* light green background */
+  --section-text: #064e3b; /* dark green text for contrast */
 
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
@@ -56,6 +58,39 @@ body {
   -moz-osx-font-smoothing:grayscale;
 }
 
+/* global reset + full-height layout */
+* { box-sizing: border-box; }
+html, body, #root { height: 100%; margin: 0; }
+body {
+  font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* App wrapper should fill viewport and allow main to grow */
+.app {
+  min-height: 100vh;   /* fallback if #root not stretched */
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Make the main content area take remaining space so sections can be 100vh */
+main {
+  flex: 1 1 auto;
+  display: block;
+  padding-top: 64px;
+}
+
+/* Example section that should fill viewport */
+.section-hero, section.fullscreen {
+  min-height: 100vh;
+  height: 100vh; /* use height:100vh to force full viewport height */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 h1 {
   font-size: 3.2em;
   line-height: 1.1;
@@ -82,29 +117,66 @@ button:focus-visible {
 
 /* container utility */
 .container{
-  max-width:var(--container-width);
+  max-width:1200px;
   margin-left:auto;
   margin-right:auto;
   padding-left:1rem;
   padding-right:1rem;
+  width:100%;
 }
 
-/* simple helpers used by components */
-.hidden{display:none}
-.flex{display:flex}
-.items-center{align-items:center}
-.justify-center{justify-content:center}
-.p-4{padding:1rem}
-.py-4{padding-top:1rem;padding-bottom:1rem}
-.mb-6{margin-bottom:1.5rem}
+/* header container: brand left, nav right */
+.header-container{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:1rem;
+}
+
+/* simple horizontal nav */
+.nav{
+  display:flex;
+  gap:1rem;
+  align-items:center;
+}
+
+/* hero layout: split left / right */
+.hero-inner{
+  display:flex;
+  gap:2rem;
+  align-items:center;
+  justify-content:space-between; /* key: spread across */
+  width:100%;
+}
+
+/* two-column grid helper */
+.grid-2{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:2rem;
+  align-items:center;
+}
+
+/* ensure sections can use full width spacing rather than centered column */
+.section-fullwidth {
+  width:100%;
+  padding-left:1rem;
+  padding-right:1rem;
+}
+
+/* override unwanted centering rules if present */
+.text-center-override { text-align: left !important; }
 
 /* header */
 header.site-header{
   background:var(--primary);
   color:#fff;
   box-shadow:0 2px 8px rgba(0,0,0,0.08);
-  position:sticky;
+  position:fixed;
   top:0;
+  left:0;
+  right:0;
+  height:64px;
   z-index:50;
 }
 
@@ -128,6 +200,52 @@ footer.site-footer{
   border-top:1px solid #e5e7eb;
 }
 
+/* apply to sections that use the "secondary-bg" class (existing) 
+   and any other alternate-section classes you want to use */
+.secondary-bg,
+.section-alt,
+.section--green {
+  background-color: var(--section-bg) !important;
+  color: var(--section-text) !important;
+}
+
+/* make links/buttons inside those sections readable */
+.secondary-bg a,
+.section-alt a,
+.section--green a {
+  color: var(--primary);
+  text-decoration: underline;
+}
+
+/* buttons inside green sections: keep primary button look */
+.secondary-bg .btn,
+.section-alt .btn,
+.section--green .btn {
+  color: #fff;
+  background-color: var(--primary);
+  border: none;
+}
+
+/* ensure headings contrast */
+.secondary-bg h1,
+.secondary-bg h2,
+.secondary-bg h3,
+.section-alt h1,
+.section-alt h2,
+.section-alt h3,
+.section--green h1,
+.section--green h2,
+.section--green h3 {
+  color: var(--section-text);
+}
+
+/* keep white sections untouched; if you have a .hero-white or .white-bg class */
+.hero-white,
+.white-bg {
+  background-color: #fff !important;
+  color: inherit;
+}
+
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;
@@ -139,4 +257,92 @@ footer.site-footer{
   button {
     background-color: #f9f9f9;
   }
+}
+
+/* add or append these styles */
+
+.social-icons {
+  display: flex;
+  gap: 0.6rem;
+  align-items: center;
+}
+
+.social-icons .icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--primary, #166534);
+  width: 36px;
+  height: 36px;
+  border-radius: 6px;
+  text-decoration: none;
+  transition: background-color .15s ease, color .15s ease, transform .12s ease;
+}
+
+.social-icons .icon svg {
+  width: 18px;
+  height: 18px;
+}
+
+.social-icons .icon:hover {
+  background: rgba(22,101,52,0.08);
+  transform: translateY(-2px);
+}
+
+.footer-container {
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:1rem;
+}
+
+#contact .follow-us-title {
+  font-size: 2rem;        /* larger title */
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+  color: var(--primary, #166534);
+}
+
+#contact .social-icons {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+}
+
+#contact .social-icons .icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--primary, #166534);
+  width: 44px;            /* larger icon container */
+  height: 44px;
+  border-radius: 8px;
+  background: transparent;
+  transition: background-color .12s ease, transform .12s ease;
+}
+
+#contact .social-icons .icon.large {
+  width: 56px;            /* extra-large variant */
+  height: 56px;
+}
+
+#contact .social-icons .icon svg {
+  width: 24px;
+  height: 24px;
+}
+
+#contact .social-icons .icon.large svg {
+  width: 28px;
+  height: 28px;
+}
+
+#contact .social-icons .icon:hover {
+  background: rgba(22,101,52,0.08);
+  transform: translateY(-3px);
+}
+
+/* ensure contrast inside the green sections */
+#contact.secondary-bg,
+#contact .secondary-bg {
+  color: var(--section-text, #064e3b);
 }

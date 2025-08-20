@@ -1,7 +1,9 @@
 import React from 'react';
 
-export const Hero: React.FC = () => {
-    const scrollToContact = () => {
+interface HeroProps { }
+
+export const Hero: React.FC<HeroProps> = () => {
+    const scrollToContact = (): void => {
         const element = document.getElementById('contact');
         if (element) {
             element.scrollIntoView({ behavior: 'smooth' });
@@ -9,8 +11,8 @@ export const Hero: React.FC = () => {
     };
 
     return (
-        <section id="home" className="min-h-screen bg-gradient-to-br from-background to-secondary/20 flex items-center">
-            <div className="container mx-auto px-4 py-20">
+        <section id="home" className="min-h-screen hero-white flex items-center">
+            <div className="container py-20">
                 <div className="grid lg:grid-cols-2 gap-12 items-center">
                     <div className="space-y-6">
                         <h1 className="text-5xl lg:text-6xl font-bold text-primary leading-tight">
@@ -24,13 +26,13 @@ export const Hero: React.FC = () => {
                         <div className="flex flex-col sm:flex-row gap-4">
                             <button
                                 onClick={scrollToContact}
-                                className="bg-primary text-primary-foreground px-8 py-4 rounded-lg hover:bg-primary/90 transition-colors"
+                                className="btn btn-primary"
                             >
                                 Contact Us for Details
                             </button>
                             <button
                                 onClick={scrollToContact}
-                                className="border-2 border-primary text-primary px-8 py-4 rounded-lg hover:bg-primary hover:text-primary-foreground transition-colors"
+                                className="btn btn-secondary"
                             >
                                 Get Involved
                             </button>

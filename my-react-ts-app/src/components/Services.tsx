@@ -1,14 +1,23 @@
 import React from 'react';
 
-export const Services: React.FC = () => {
-    const scrollToContact = () => {
+interface Service {
+    icon: string;
+    title: string;
+    description: string;
+    features: string[];
+}
+
+interface ServicesProps { }
+
+export const Services: React.FC<ServicesProps> = () => {
+    const scrollToContact = (): void => {
         const element = document.getElementById('contact');
         if (element) {
             element.scrollIntoView({ behavior: 'smooth' });
         }
     };
 
-    const services = [
+    const services: Service[] = [
         {
             icon: '🏠',
             title: 'Residential Waste Collection',
@@ -49,7 +58,7 @@ export const Services: React.FC = () => {
 
     return (
         <section id="services" className="py-20 bg-background">
-            <div className="container mx-auto px-4">
+            <div className="container">
                 <div className="text-center mb-16">
                     <h2 className="text-4xl font-bold text-primary mb-4">Our Services</h2>
                     <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
@@ -59,15 +68,24 @@ export const Services: React.FC = () => {
                 </div>
 
                 <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    {services.map((service, index) => (
-                        <div key={index} className="bg-card p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow">
+                    {services.map((service: Service, index: number) => (
+                        <div key={index} className="bg-card p-6 rounded-lg shadow-md transition-shadow"
+                            style={{
+                                transition: 'box-shadow 0.3s ease'
+                            }}
+                            onMouseEnter={(e) => {
+                                e.currentTarget.style.boxShadow = '0 10px 15px rgba(0, 0, 0, 0.15)';
+                            }}
+                            onMouseLeave={(e) => {
+                                e.currentTarget.style.boxShadow = '0 4px 6px rgba(0, 0, 0, 0.1)';
+                            }}>
                             <div className="text-4xl mb-4">{service.icon}</div>
                             <h3 className="text-xl font-semibold text-primary mb-3">{service.title}</h3>
                             <p className="text-muted-foreground mb-4 leading-relaxed">
                                 {service.description}
                             </p>
                             <ul className="space-y-2">
-                                {service.features.map((feature, featureIndex) => (
+                                {service.features.map((feature: string, featureIndex: number) => (
                                     <li key={featureIndex} className="flex items-center text-sm text-muted-foreground">
                                         <span className="w-2 h-2 bg-accent rounded-full mr-3"></span>
                                         {feature}
@@ -76,7 +94,7 @@ export const Services: React.FC = () => {
                             </ul>
                             <button
                                 onClick={scrollToContact}
-                                className="mt-6 w-full bg-primary text-primary-foreground py-2 rounded-lg hover:bg-primary/90 transition-colors"
+                                className="mt-6 w-full btn btn-primary"
                             >
                                 Email for Details
                             </button>
@@ -85,7 +103,7 @@ export const Services: React.FC = () => {
                 </div>
 
                 <div className="mt-16 text-center">
-                    <div className="bg-primary/10 p-8 rounded-lg">
+                    <div className="primary-bg-light p-8 rounded-lg">
                         <h3 className="text-2xl font-semibold text-primary mb-4">Need a Custom Solution?</h3>
                         <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">
                             We understand that every organization has unique waste management needs.
@@ -93,7 +111,7 @@ export const Services: React.FC = () => {
                         </p>
                         <button
                             onClick={scrollToContact}
-                            className="bg-primary text-primary-foreground px-8 py-3 rounded-lg hover:bg-primary/90 transition-colors"
+                            className="btn btn-primary px-8"
                         >
                             Request Information via Email
                         </button>
