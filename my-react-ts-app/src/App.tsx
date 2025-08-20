@@ -1,22 +1,23 @@
 import React from 'react';
-import { Header } from './components/Header';
-import { Hero } from './components/Hero';
-import { About } from './components/About';
-import { Services } from './components/Services';
-import { Contact } from './components/Contact';
-import { Footer } from './components/Footer';
+import { Header } from './components/Header.tsx';
+import { Hero } from './components/Hero.tsx';
+import { About } from './components/About.tsx';
+import { Services } from './components/Services.tsx';
+import { Contact } from './components/Contact.tsx';
+import { Footer } from './components/Footer.tsx';
+import './App.css';
 
-export default function App() {
+function App() {
   return (
-    <div className="min-h-screen">
+    <div className="App">
       <Header />
-      <main>
-        <Hero />
-        <About />
-        <Services />
-        <Contact />
-      </main>
+      <Hero />
+      <About />
+      <Services />
+      <Contact />
       <Footer />
     </div>
   );
 }
+
+export default App;
