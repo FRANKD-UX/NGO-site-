@@ -1,4 +1,3 @@
-import React from 'react';
 import wmfLogo from '../assets/wmf-logo.jpeg'
 interface HeaderProps { }
 
