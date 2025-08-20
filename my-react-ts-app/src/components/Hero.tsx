@@ -59,7 +59,7 @@ export const Hero: React.FC<HeroProps> = () => {
                         <div className="text-4xl mb-4">🌍</div>
                         <h3 className="text-xl font-semibold mb-2">Environmental Impact</h3>
                         <p className="text-muted-foreground">
-                            Reducing carbon footprint through sustainable waste practices
+                            Reducing carbon footprint through sustainable waste practices in schools and communities
                         </p>
                     </div>
 
@@ -67,7 +67,7 @@ export const Hero: React.FC<HeroProps> = () => {
                         <div className="text-4xl mb-4">👥</div>
                         <h3 className="text-xl font-semibold mb-2">Community Engagement</h3>
                         <p className="text-muted-foreground">
-                            Educating and empowering communities for environmental action
+                            Educating and empowering communities for environmental action through our workshops and events
                         </p>
                     </div>
                 </div>

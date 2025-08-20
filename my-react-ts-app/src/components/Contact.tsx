@@ -27,18 +27,19 @@ export const Contact: React.FC<ContactProps> = () => {
         }));
     };
 
-    const handleSubmit = (e: React.FormEvent): void => {
+    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        // Handle form submission here
-        console.log('Form submitted:', formData);
-        alert('Thank you for your message! We will get back to you soon.');
-        setFormData({
-            name: '',
-            email: '',
-            phone: '',
-            subject: '',
-            message: ''
-        });
+        const form = e.currentTarget;
+        const fd = new FormData(form);
+        const name = (fd.get('name') as string) || '';
+        const email = (fd.get('email') as string) || '';
+        const message = (fd.get('message') as string) || '';
+
+        const subject = `Website message from ${name || email || 'Visitor'}`;
+        const body = `Name: ${name}\nEmail: ${email}\n\n${message}`;
+
+        // opens user's email client with prefilled recipient, subject and body
+        window.location.href = `mailto:elizabeth@waste-management-foundation.org.za?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
     };
 
     return (
@@ -65,8 +66,8 @@ export const Contact: React.FC<ContactProps> = () => {
                                     <div>
                                         <h4 className="font-semibold text-primary">Address</h4>
                                         <p className="text-muted-foreground">
-                                            123 Green Street, Eco District<br />
-                                            Environmental City, EC 12345
+                                            230 Persinmon street <br />
+                                            Malvern Johannesburg South Africa
                                         </p>
                                     </div>
                                 </div>
@@ -77,7 +78,7 @@ export const Contact: React.FC<ContactProps> = () => {
                                     </div>
                                     <div>
                                         <h4 className="font-semibold text-primary">Phone</h4>
-                                        <p className="text-muted-foreground">+1 (555) 123-4567</p>
+                                        <p className="text-muted-foreground">+27 (83) 562-4561</p>
                                     </div>
                                 </div>
 
@@ -87,7 +88,7 @@ export const Contact: React.FC<ContactProps> = () => {
                                     </div>
                                     <div>
                                         <h4 className="font-semibold text-primary">Email</h4>
-                                        <p className="text-muted-foreground">info@ecowastesolutions.org</p>
+                                        <p className="text-muted-foreground">elizabeth@waste-management-foundation.org.za</p>
                                     </div>
                                 </div>
 
@@ -98,8 +99,8 @@ export const Contact: React.FC<ContactProps> = () => {
                                     <div>
                                         <h4 className="font-semibold text-primary">Office Hours</h4>
                                         <p className="text-muted-foreground">
-                                            Monday - Friday: 8:00 AM - 6:00 PM<br />
-                                            Saturday: 9:00 AM - 4:00 PM<br />
+                                            Monday - Friday: 8:00 AM - 4:00 PM<br />
+                                            Saturday: 9:00 AM - 2:00 PM<br />
                                             Sunday: Closed
                                         </p>
                                     </div>
@@ -185,7 +186,7 @@ export const Contact: React.FC<ContactProps> = () => {
                                         value={formData.phone}
                                         onChange={handleInputChange}
                                         className="form-input"
-                                        placeholder="(555) 123-4567"
+                                        placeholder="(phone number)"
                                     />
                                 </div>
 

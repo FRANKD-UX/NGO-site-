@@ -9,8 +9,9 @@ export const About: React.FC<AboutProps> = () => {
                 <div className="text-center mb-16">
                     <h2 className="text-4xl font-bold text-primary mb-4">About EcoWaste Solutions</h2>
                     <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-                        We are a dedicated NGO committed to revolutionizing waste management
-                        practices to create a more sustainable and environmentally conscious world.
+                        We are an NPO in South Afirca dedicated to providing services to the communities in 
+                        Gauteng our aim is to achive the 5 R's in waste management: Reduce, Reuse, Recycle, Recover, and Refuse.
+                        Our goal is to create a cleaner, greener future for all through sustainable waste management practices.
                     </p>
                 </div>
 
@@ -18,14 +19,14 @@ export const About: React.FC<AboutProps> = () => {
                     <div className="space-y-6">
                         <h3 className="text-3xl font-semibold text-primary">Our Mission</h3>
                         <p className="text-lg text-muted-foreground leading-relaxed">
-                            To eliminate waste pollution and promote circular economy principles
-                            through innovative programs, community education, and sustainable
-                            waste management solutions that benefit both people and the planet.
+                            To alleviate the waste crisis in South Africa by providing innovative,
+                            sustainable waste management solutions that empower communities and protect the environment.
+                            through education, recycling, and community engagement. 
                         </p>
                         <p className="text-lg text-muted-foreground leading-relaxed">
-                            Since our founding in 2015, we have diverted over 50,000 tons of waste
-                            from landfills, established 200+ recycling centers, and educated
-                            100,000+ individuals about sustainable practices.
+                            We strive to create a circular economy where waste is minimized, resources are conserved,
+                            and communities thrive through responsible waste practices.Our motto Proverbs 22:6
+                            Trainup a child in the way he should go, and when he is old he will not depart from it.
                         </p>
                     </div>
 
@@ -43,31 +44,14 @@ export const About: React.FC<AboutProps> = () => {
                             <ul className="text-muted-foreground space-y-2">
                                 <li>• Environmental Stewardship</li>
                                 <li>• Community Empowerment</li>
-                                <li>• Innovation & Sustainability</li>
+                                <li>• Education and youth development</li>
                                 <li>• Transparency & Accountability</li>
                             </ul>
                         </div>
                     </div>
                 </div>
 
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-                    <div>
-                        <div className="text-3xl font-bold text-primary">50K+</div>
-                        <p className="text-muted-foreground">Tons Diverted</p>
-                    </div>
-                    <div>
-                        <div className="text-3xl font-bold text-primary">200+</div>
-                        <p className="text-muted-foreground">Recycling Centers</p>
-                    </div>
-                    <div>
-                        <div className="text-3xl font-bold text-primary">100K+</div>
-                        <p className="text-muted-foreground">People Educated</p>
-                    </div>
-                    <div>
-                        <div className="text-3xl font-bold text-primary">50+</div>
-                        <p className="text-muted-foreground">Communities Served</p>
-                    </div>
-                </div>
+                
             </div>
         </section>
     );

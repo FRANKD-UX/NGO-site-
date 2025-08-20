@@ -34,7 +34,7 @@ export const Services: React.FC<ServicesProps> = () => {
             icon: '🎓',
             title: 'Educational Programs',
             description: 'Community workshops and school programs to promote environmental awareness and sustainable practices.',
-            features: ['School workshops', 'Community seminars', 'Online resources', 'Certification programs']
+            features: ['School workshops', 'Community seminars', 'Online resources', 'entreprenual  programs']
         },
         {
             icon: '⚡',

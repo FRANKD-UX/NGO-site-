@@ -1,5 +1,5 @@
 import React from 'react';
-
+import wmfLogo from '../assets/wmf-logo.jpeg'
 interface HeaderProps { }
 
 export const Header: React.FC<HeaderProps> = () => {
@@ -15,11 +15,15 @@ export const Header: React.FC<HeaderProps> = () => {
             <div className="container py-4">
                 <div className="flex items-center justify-between">
                     <div className="flex items-center space-x-2">
-                        <div className="w-10 h-10 bg-accent rounded-full flex items-center justify-center">
-                            <span className="font-bold text-accent-foreground">🌱</span>
-                        </div>
+                        <div className="w-10 h-10 bg-accent rounded-full flex items-center justify-center overflow-hidden">
+                            <img 
+                            src={wmfLogo}
+                            alt="WMF Logo" 
+                            className="w-full h-full object-cover"
+                        />
+                            </div>
                         <div>
-                            <h1 className="text-xl font-bold">EcoWaste Solutions</h1>
+                            <h1 className="text-xl font-bold">Waste Management Foundation</h1>
                             <p className="text-sm opacity-90">Sustainable Waste Management</p>
                         </div>
                     </div>
